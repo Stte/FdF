@@ -6,6 +6,7 @@ I			= inc/
 
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -c -I$I
+FLAGS		=
 
 AR			= ar
 ARFLAGS		= rcs
@@ -40,7 +41,7 @@ $O:
 $(OBJ): | $O
 
 $(OBJ): $O%.o: $S%
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $(FLAGS) $< -o $@
 
 $(NAME): $(OBJ)
 	$(AR) $(ARFLAGS) $@ $?

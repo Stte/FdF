@@ -15,7 +15,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/fdf.c
+$S/main.c	$S/mlx.c	$S/map_size.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
@@ -35,7 +35,7 @@ $O:
 $(OBJ): | $O
 
 $(OBJ): $O%.o: $S%
-	$(CC) $(CFLAGS) $(DEBUG) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEBUG) -Imlx -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(OBJ) $(LIBRARIES) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
