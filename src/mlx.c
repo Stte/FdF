@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:43:00 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/20 14:37:17 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/21 17:28:28 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,27 @@ static void	fdf_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-static void	paint_img(t_data *img)
+static void	paint_img(t_data *img, t_map map)
 {
-	for (int i = 5; i < 55; i++)
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map.height)
 	{
-		fdf_mlx_pixel_put(img, i, i, 0x00FF0000);
+		x = 0;
+		while (x < map.width)
+		{
+			// fdf_mlx_pixel_put(img, x, y, map.map[y][x].color);
+			fdf_mlx_pixel_put(img, map.map[y][x].x * 20 + 10, map.map[y][x].y * 20 + 10, 0x00FF0000);
+
+			x++;
+		}
+		y++;
 	}
 }
 
-void render(void)
+void render(t_map map)
 {
 	t_vars	mlx_vars;
 	t_data	img;
@@ -57,7 +69,7 @@ void render(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	// fdf_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	paint_img(&img);
+	paint_img(&img, map);
 	mlx_put_image_to_window(mlx_vars.mlx, mlx_vars.win, img.img, 0, 0);
 
 	mlx_key_hook(mlx_vars.win, key_down, &mlx_vars); // ESC click

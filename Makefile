@@ -15,7 +15,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/main.c	$S/mlx.c	$S/map_size.c
+$S/main.c	$S/mlx.c	$S/map_size.c	$S/utils.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f

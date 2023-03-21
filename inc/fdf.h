@@ -34,15 +34,26 @@ typedef struct	s_vars
 	void	*win;
 }				t_vars;
 
+typedef struct s_coord
+{
+	/// change to this
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+	// int	value;
+}				t_coord;
+
 typedef struct s_map
 {
-	int	**map;
-	int	width;
-	int	height;
+	t_coord	**map;
+	int		width;
+	int		height;
 }				t_map;
 
 
-void	render(void);
+void	render(t_map map);
 void	get_map_size(int fd, t_map *map);
+int		ft_atoi_hex(const char *str);
 
 #endif
