@@ -19,14 +19,14 @@ enum
 	ESC = 53
 };
 
-typedef struct	s_data
+typedef struct	s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}				t_img;
 
 typedef struct	s_vars
 {
@@ -34,26 +34,38 @@ typedef struct	s_vars
 	void	*win;
 }				t_vars;
 
-typedef struct s_coord
+typedef struct s_point
 {
-	/// change to this
 	int	x;
 	int	y;
 	int	z;
 	int	color;
-	// int	value;
-}				t_coord;
+}				t_point;
 
 typedef struct s_map
 {
-	t_coord	**map;
+	t_point	**map;
 	int		width;
 	int		height;
 }				t_map;
 
+typedef struct	s_bres
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int y1;
+	int	delta_x;
+	int	delta_y;
+	int	sign_x;
+	int	sign_y;
+	int	err;
+}				t_bres;
 
 void	render(t_map map);
+void	load_map(char *path, t_map *map);
 void	get_map_size(int fd, t_map *map);
 int		ft_atoi_hex(const char *str);
+void	projection(t_map *map);
 
 #endif
