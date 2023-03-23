@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection.c                                       :+:      :+:    :+:   */
+/*   center_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 18:54:15 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/23 19:51:51 by tspoof           ###   ########.fr       */
+/*   Created: 2023/03/23 17:22:34 by tspoof            #+#    #+#             */
+/*   Updated: 2023/03/23 19:50:04 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <math.h>
 
-void	ft_projection(t_map *map, int zoom)
+void	center_map(t_map *map)
 {
-	int	x;
-	int	y;
-	int	old_x;
-	int	old_y;
+	int	center_x;
+	int	center_y;
+	t_bounds	map_bounds;
 
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			old_x = map->map[y][x].x * zoom;
-			old_y = map->map[y][x].y * zoom;
-			map->map[y][x].x = (old_x - old_y) * cos(0.5236);
-			map->map[y][x].y = (old_x + old_y) * sin(0.5236) - map->map[y][x].z;
-			x++;
-		}
-		y++;
-	}
+	map_bounds = get_map_bounds(map);
+	center_x = (map_bounds.x_max + map_bounds.x_min) / 2;
+	center_y = (map_bounds.y_max + map_bounds.y_min) / 2;
+	ft_transform(map, WIDTH / 2 - center_x, HEIGHT / 2 - center_y);
 }

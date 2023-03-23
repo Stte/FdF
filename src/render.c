@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:43:00 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/22 18:52:13 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/23 17:53:59 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ static int close_window(t_vars *param)
 static void	fdf_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
-	int		offset = (y * img->line_length + x * (img->bits_per_pixel / 8));
+	int		offset;
 
+	offset = (y * img->line_length + x * (img->bits_per_pixel / 8));
+	if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
+	{
 	dst = img->addr + offset;
 	*(unsigned int*)dst = color;
+	}
 }
 
 static void	plotLine(t_bres bres, t_img *img, int color)
@@ -50,20 +54,18 @@ static void	plotLine(t_bres bres, t_img *img, int color)
 		fdf_mlx_pixel_put(img, bres.x0, bres.y0, color);
 		if (bres.x0 == bres.x1 && bres.y0 == bres.y1)
 			break;
-		if (2 * bres.err >= bres.delta_y)
+		if (2 * bres.err >= bres.delta_y && bres.x0 != bres.x1)
 		{
 			bres.err += bres.delta_y;
 			bres.x0 += bres.sign_x;
 		}
-		if (2 * bres.err <= bres.delta_x)
+		if (2 * bres.err <= bres.delta_x && bres.y0 != bres.y1)
 		{
 			bres.err += bres.delta_x;
 			bres.y0 += bres.sign_y;
 		}
 	}
 }
-
-// void	bresenham_setup(t_bres *bres, int x, int y)
 
 static void	paint_img(t_img *img, t_map map)
 {
@@ -97,14 +99,12 @@ static void	paint_img(t_img *img, t_map map)
 	}
 }
 
-void render(t_map map)
+void ft_render(t_vars mlx_vars, t_map map)
 {
-	t_vars	mlx_vars;
+	// t_vars	mlx_vars;
 	t_img	img;
 
-	mlx_vars.mlx = mlx_init();
-	mlx_vars.win = mlx_new_window(mlx_vars.mlx, 1000, 1000, "FdF");
-	img.img = mlx_new_image(mlx_vars.mlx, 1000, 1000);
+	img.img = mlx_new_image(mlx_vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	// fdf_mlx_pixel_put(&img, 5, 5, 0x00FF0000);

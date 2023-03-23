@@ -7,6 +7,9 @@
 
 #include <stdio.h> // remove this
 
+#define WIDTH 1000
+#define HEIGHT 1000
+
 enum
 {
 	ON_KEYDOWN = 2,
@@ -62,10 +65,21 @@ typedef struct	s_bres
 	int	err;
 }				t_bres;
 
-void	render(t_map map);
-void	load_map(char *path, t_map *map);
-void	get_map_size(int fd, t_map *map);
-int		ft_atoi_hex(const char *str);
-void	projection(t_map *map);
+typedef struct	s_bounds
+{
+	int	x_min;
+	int	x_max;
+	int	y_min;
+	int	y_max;
+}				t_bounds;
+
+void		ft_render(t_vars mlx_vars, t_map map);
+void		load_map(char *path, t_map *map);
+void		get_map_size(int fd, t_map *map);
+int			ft_atoi_hex(const char *str);
+void		ft_projection(t_map *map, int zoom);
+void		ft_transform(t_map *map, int transform_x, int transform_y);
+t_bounds	get_map_bounds(t_map *map);
+void		center_map(t_map *map);
 
 #endif

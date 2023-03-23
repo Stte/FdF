@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:39:56 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/22 18:58:10 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/23 17:17:16 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	row_add_values(char	**split_line, int width, t_point *row, int y)
 	x = 0;
 	while (x < width)
 	{
-		row[x].y = y * 25 + 5; // spacing + offset
-		row[x].x = x * 25 + 5;
+		row[x].y = y;
+		row[x].x = x;
 		row[x].z = ft_atoi(split_line[x]);
 		row[x].color = ft_atoi_hex(ft_strchr(split_line[x], 'x'));
 		if (row[x].color == 0)
@@ -71,6 +71,5 @@ void	load_map(char *path, t_map *map)
 	close(fd);
 	fd = open(path, O_RDONLY);
 	store_map(fd, map);
-	projection(map);
 	close(fd);
 }
