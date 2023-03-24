@@ -15,8 +15,9 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/main.c	$S/render.c	$S/map_size.c	$S/utils.c	$S/load_map.c \
-$S/projection.c	$S/transform.c	$S/center_map.c	$S/map_bounds.c
+$S/main.c		$S/render.c		$S/map_size.c	$S/utils.c		$S/load_map.c	\
+$S/projection.c	$S/transform.c	$S/center_map.c	$S/map_bounds.c	$S/zoom.c		\
+$S/fit_map.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
