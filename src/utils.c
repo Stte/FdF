@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:47 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 14:04:04 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/25 17:10:58 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,20 @@ int	ft_atoi_hex(const char *str)
 	return ((int)(sign * val));
 }
 
-int	key_down(int keycode, t_vars *mlx_vars)
+void	loop_map(void *dst, void *params, t_map *map,
+			void (*f)(void *, void *, t_map *, t_xy))
 {
-	printf("%d\n", keycode); // remove this
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(mlx_vars->mlx, mlx_vars->win);
-		exit (0);
-	}
-	return (0);
-}
+	t_xy	xy;
 
-int	close_window(t_vars *param)
-{
-	mlx_destroy_window(param->mlx, param->win);
-	exit (0);
+	xy.y = 0;
+	while (xy.y < map->height)
+	{
+		xy.x = 0;
+		while (xy.x < map->width)
+		{
+			f(dst, params, map, xy);
+			xy.x++;
+		}
+		xy.y++;
+	}
 }

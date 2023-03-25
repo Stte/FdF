@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zoom.c                                             :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 11:58:20 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 16:27:36 by tspoof           ###   ########.fr       */
+/*   Created: 2023/03/25 16:25:31 by tspoof            #+#    #+#             */
+/*   Updated: 2023/03/25 16:25:54 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_zoom(t_map *map, float zoom)
+int	key_down(int keycode, t_vars *mlx_vars)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < map->height)
+	printf("%d\n", keycode); // remove this
+	if (keycode == ESC)
 	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->map[y][x].x = map->map[y][x].x * zoom;
-			map->map[y][x].y = map->map[y][x].y * zoom;
-			map->map[y][x].z = map->map[y][x].z * zoom; // adjust to map size
-			x++;
-		}
-		y++;
+		mlx_destroy_window(mlx_vars->mlx, mlx_vars->win);
+		exit (0);
 	}
+	return (0);
+}
+
+int	close_window(t_vars *param)
+{
+	mlx_destroy_window(param->mlx, param->win);
+	exit (0);
 }
