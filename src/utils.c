@@ -6,11 +6,11 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:47 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/23 17:54:55 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/25 14:04:04 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
 static int	alphatoint(char c)
 {
@@ -48,4 +48,21 @@ int	ft_atoi_hex(const char *str)
 		i++;
 	}
 	return ((int)(sign * val));
+}
+
+int	key_down(int keycode, t_vars *mlx_vars)
+{
+	printf("%d\n", keycode); // remove this
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(mlx_vars->mlx, mlx_vars->win);
+		exit (0);
+	}
+	return (0);
+}
+
+int	close_window(t_vars *param)
+{
+	mlx_destroy_window(param->mlx, param->win);
+	exit (0);
 }

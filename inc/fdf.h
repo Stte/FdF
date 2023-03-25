@@ -2,6 +2,7 @@
 # define FDF_H
 
 #include <mlx.h>
+#include "math.h"
 #include <stdlib.h> // for exit
 #include "libft.h"
 
@@ -74,14 +75,20 @@ typedef struct	s_bounds
 }				t_bounds;
 
 void		ft_render(t_vars mlx_vars, t_map map);
+int			close_window(t_vars *param);
+int			key_down(int keycode, t_vars *mlx_vars);
 void		load_map(char *path, t_map *map);
 void		get_map_size(int fd, t_map *map);
 int			ft_atoi_hex(const char *str);
-void		ft_projection(t_map *map);
+void	ft_projection(t_map *map, float x_rad, float y_rad);
 void		ft_transform(t_map *map, int transform_x, int transform_y);
 t_bounds	get_map_bounds(t_map *map);
 void		center_map(t_map *map);
 void		ft_zoom(t_map *map, float zoom);
 void		fit_map(t_map *map);
+int			create_rgb(int r, int g, int b);
+int			get_r(int rgb);
+int			get_g(int rgb);
+int			get_b(int rgb);
 
 #endif

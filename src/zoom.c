@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:58:20 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/24 16:13:23 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/25 13:11:48 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_zoom(t_map *map, float zoom)
 		{
 			map->map[y][x].x = map->map[y][x].x * zoom;
 			map->map[y][x].y = map->map[y][x].y * zoom;
-			// map->map[y][x].z = map->map[y][x].z * zoom;
+			map->map[y][x].z = map->map[y][x].z * zoom;
 			x++;
 		}
 		y++;

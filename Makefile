@@ -7,7 +7,7 @@ LIBFT_I		= libft/inc
 
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra
-DEBUG		=
+D		=
 INCLUDES	= -I$I -I$(LIBFT_I)
 LIBRARIES	= -L./libft -lft
 
@@ -17,7 +17,7 @@ ARFLAGS		= rcs
 SRC = \
 $S/main.c		$S/render.c		$S/map_size.c	$S/utils.c		$S/load_map.c	\
 $S/projection.c	$S/transform.c	$S/center_map.c	$S/map_bounds.c	$S/zoom.c		\
-$S/fit_map.c
+$S/fit_map.c	$S/colors.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
@@ -25,7 +25,7 @@ RMDIR		= /bin/rm -rf
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
-LIBFT_FLAGS	= $(DEBUG)
+LIBFT_FLAGS	= $D
 
 .PHONY: all clean fclean re
 
@@ -37,7 +37,7 @@ $O:
 $(OBJ): | $O
 
 $(OBJ): $O%.o: $S%
-	$(CC) $(CFLAGS) $(INCLUDES) $(DEBUG) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $D -Imlx -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(OBJ) $(LIBRARIES) -lmlx -framework OpenGL -framework AppKit -o $(NAME)

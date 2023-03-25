@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/24 16:54:55 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/25 14:58:16 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ static void	create_window(t_vars *mlx_vars)
 	mlx_vars->win = mlx_new_window(mlx_vars->mlx, WIDTH, HEIGHT, "FdF");
 }
 
+//TODO:
+
+// loop_map((*f)());
+
 static void	fdf(char *path)
 {
 	t_map	map;
@@ -65,8 +69,8 @@ static void	fdf(char *path)
 	create_window(&mlx_vars);
 	load_map(path, &map);
 	fit_map(&map);
-	// ft_projection(&map);
-	// fit_map(&map);
+	ft_projection(&map, 0.5236, 0.5236);
+	fit_map(&map);
 	center_map(&map);
 	ft_render(mlx_vars, map);
 	// debug_print_map(&map);
