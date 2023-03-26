@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:39:56 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 13:15:43 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 17:15:06 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_point	*fill_row(int fd, int width, int y)
 	if (!split_line)
 		return (0);
 	row_add_values(split_line, width, row, y);
-	free(split_line);
+	free_split(split_line);
 	free(line);
 	return (row);
 }
@@ -53,13 +53,13 @@ static void	store_map(int fd, t_map *map)
 {
 	int	y;
 
-	map->map = ft_calloc(map->height, sizeof(t_point *));
-	if (!map->map)
+	map->grid = ft_calloc(map->height, sizeof(t_point *));
+	if (!map->grid)
 		return ;
 	y = 0;
 	while (y < map->height)
 	{
-		map->map[y] = fill_row(fd, map->width, y);
+		map->grid[y] = fill_row(fd, map->width, y);
 		y++;
 	}
 }

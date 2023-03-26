@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 14:58:16 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 18:48:48 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	debug_print_map(t_map *map) // remove this function
 		x = 0;
 		while (x < map->width)
 		{
-			ft_putnbr_fd(map->map[y][x].z, 1);
+			ft_putnbr_fd(map->grid[y][x].z, 1);
 			ft_putstr_fd("	", 1);
 			x++;
 		}
@@ -42,7 +42,7 @@ void	debug_print_map(t_map *map) // remove this function
 		x = 0;
 		while (x < map->width)
 		{
-			ft_putnbr_fd(map->map[y][x].color, 1);
+			ft_putnbr_fd(map->grid[y][x].color, 1);
 			ft_putstr_fd("	", 1);
 			x++;
 		}
@@ -57,22 +57,54 @@ static void	create_window(t_vars *mlx_vars)
 	mlx_vars->win = mlx_new_window(mlx_vars->mlx, WIDTH, HEIGHT, "FdF");
 }
 
-//TODO:
+// static void	add_hooks(t_vars *mlx_vars, t_map *map)
+static void	add_hooks(t_data *data)
+{
+	t_vars	*mlx_vars;
 
-// loop_map((*f)());
+	mlx_vars = data->mlx_vars;
+	mlx_key_hook(mlx_vars->win, key_hook, data);
+	// mlx_mouse_hook(mlx_vars->win, mouse_hook, data);
+	mlx_hook(mlx_vars->win, ON_DESTROY, 0, close_cross, mlx_vars);
+	mlx_hook(mlx_vars->win, ON_KEYDOWN, 0, test_hook, data);
+}
+
+static void initialize_map(t_map *map)
+{
+	fit_map(map);
+	ft_projection(map, 0.5236, 0.5236);
+	fit_map(map);
+	center_map(map);
+}
+
+static void	initialize_image(t_data *data)
+{
+	t_img	*img;
+
+	img = data->img;
+	img->img = mlx_new_image(data->mlx_vars->mlx, WIDTH, HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+								&img->line_length, &img->endian);
+}
 
 static void	fdf(char *path)
 {
+	t_data	data;
 	t_map	map;
 	t_vars	mlx_vars;
+	t_img	img;
 
+	data.mlx_vars = &mlx_vars;
+	data.map = &map;
+	data.img = &img;
 	create_window(&mlx_vars);
+	add_hooks(&data);
 	load_map(path, &map);
-	fit_map(&map);
-	ft_projection(&map, 0.5236, 0.5236);
-	fit_map(&map);
-	center_map(&map);
-	ft_render(mlx_vars, map);
+	initialize_map(&map);
+	initialize_image(&data);
+	mlx_loop_hook(mlx_vars.mlx, ft_render, &data);
+	mlx_loop(mlx_vars.mlx);
+	// ft_render(mlx_vars, map);
 	// debug_print_map(&map);
 }
 
@@ -80,6 +112,7 @@ int	main(int argc, char *argv[])
 {
 	if (argc)
 		;
+	printf("%d\n", getpid());
 	fdf(argv[1]);
 	return (0);
 }

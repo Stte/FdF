@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:22:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 17:41:07 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 18:20:18 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	center_map(t_map *map)
 	t_bounds	map_bounds;
 
 	map_bounds = get_map_bounds(map);
-	center_x = (map_bounds.x_max + map_bounds.x_min) / 2;
-	center_y = (map_bounds.y_max + map_bounds.y_min) / 2;
+	center_x = ft_lerp(map_bounds.x_min, map_bounds.x_max, 0.5);
+	center_y = ft_lerp(map_bounds.y_min, map_bounds.y_max, 0.5);
 	ft_transform(map, WIDTH / 2 - center_x, HEIGHT / 2 - center_y);
 }

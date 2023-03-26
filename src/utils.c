@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:04:47 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 17:10:58 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 17:08:10 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,22 @@ void	loop_map(void *dst, void *params, t_map *map,
 		}
 		xy.y++;
 	}
+}
+
+float	ft_lerp(float a, float b, float fraction)
+{
+	return (a * (1.0 - fraction) + (b * fraction));
+}
+
+void	free_split(char **split)
+{
+	char	**indirect;
+
+	indirect = split;
+	while (*indirect)
+	{
+		free (*indirect);
+		indirect++;
+	}
+	free (split);
 }

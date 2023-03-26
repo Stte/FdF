@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zoom.c                                             :+:      :+:    :+:   */
+/*   get_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 11:58:20 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 16:27:36 by tspoof           ###   ########.fr       */
+/*   Created: 2023/03/26 13:12:19 by tspoof            #+#    #+#             */
+/*   Updated: 2023/03/26 13:12:37 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_zoom(t_map *map, float zoom)
+int	get_distance(int x0, int y0, int x1, int y1)
 {
-	int	x;
-	int	y;
+	return (sqrt(pow(y1 - y0, 2) + pow(x1 - x0, 2)));
+}
 
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->map[y][x].x = map->map[y][x].x * zoom;
-			map->map[y][x].y = map->map[y][x].y * zoom;
-			map->map[y][x].z = map->map[y][x].z * zoom; // adjust to map size
-			x++;
-		}
-		y++;
-	}
+int	get_distance_delta(int delta_x, int delta_y)
+{
+	return (sqrt(pow(delta_y, 2) + pow(delta_x, 2)));
 }

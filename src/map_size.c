@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:14:25 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/21 12:47:54 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 17:15:02 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,24 @@ static int	get_width(char *line)
 		width++;
 	if (*split_line[width] != '\n')
 		width++;
+	free_split(split_line);
 	return (width);
 }
 
 static int	get_height(int fd)
 {
 	int		height;
+	char	*line;
 
 	height = 1;
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
 		height++;
+	}
+	free(line);
 	return (height);
 }
 
@@ -46,4 +54,5 @@ void	get_map_size(int fd, t_map *map)
 	line = get_next_line(fd);
 	map->width = get_width(line);
 	map->height = get_height(fd);
+	free(line);
 }

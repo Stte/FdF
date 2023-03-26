@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:50:47 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 17:39:26 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 14:59:54 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	do_get_map_bounds(void *dst, void *params, t_map *map, t_xy xy)
 
 	(void)params;
 	bounds = (t_bounds *)dst;
-	if (map->map[xy.y][xy.x].x < bounds->x_min)
-		bounds->x_min = map->map[xy.y][xy.x].x;
-	if (map->map[xy.y][xy.x].x > bounds->x_max)
-		bounds->x_max = map->map[xy.y][xy.x].x;
-	if (map->map[xy.y][xy.x].y < bounds->y_min)
-		bounds->y_min = map->map[xy.y][xy.x].y;
-	if (map->map[xy.y][xy.x].y > bounds->y_max)
-		bounds->y_max = map->map[xy.y][xy.x].y;
+	if (map->grid[xy.y][xy.x].x < bounds->x_min)
+		bounds->x_min = map->grid[xy.y][xy.x].x;
+	if (map->grid[xy.y][xy.x].x > bounds->x_max)
+		bounds->x_max = map->grid[xy.y][xy.x].x;
+	if (map->grid[xy.y][xy.x].y < bounds->y_min)
+		bounds->y_min = map->grid[xy.y][xy.x].y;
+	if (map->grid[xy.y][xy.x].y > bounds->y_max)
+		bounds->y_max = map->grid[xy.y][xy.x].y;
 }
 
 t_bounds	get_map_bounds(t_map *map)

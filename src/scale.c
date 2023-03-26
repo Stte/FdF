@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   scale.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 16:25:31 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 16:25:54 by tspoof           ###   ########.fr       */
+/*   Created: 2023/03/24 11:58:20 by tspoof            #+#    #+#             */
+/*   Updated: 2023/03/26 17:52:27 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_down(int keycode, t_vars *mlx_vars)
+void	ft_scale(t_map *map, float scale)
 {
-	printf("%d\n", keycode); // remove this
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(mlx_vars->mlx, mlx_vars->win);
-		exit (0);
-	}
-	return (0);
-}
+	int	x;
+	int	y;
 
-int	close_window(t_vars *param)
-{
-	mlx_destroy_window(param->mlx, param->win);
-	exit (0);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			map->grid[y][x].x = map->grid[y][x].x * scale;
+			map->grid[y][x].y = map->grid[y][x].y * scale;
+			map->grid[y][x].z = map->grid[y][x].z * scale; // adjust to map size
+			x++;
+		}
+		y++;
+	}
 }

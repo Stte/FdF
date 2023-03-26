@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:17:18 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/25 17:45:24 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/26 17:54:06 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fit_map(t_map *map)
 	map_width = get_len(map_bounds.x_min, map_bounds.x_max);
 	map_height = get_len(map_bounds.y_min, map_bounds.y_max);
 	if ((float)HEIGHT / (float)map_height > (float)WIDTH / (float)map_width)
-		ft_zoom(map, (float)WIDTH / (float)map_width);
+		ft_scale(map, (float)WIDTH / (float)map_width);
 	else
-		ft_zoom(map, (float)HEIGHT / (float)map_height);
+		ft_scale(map, (float)HEIGHT / (float)map_height);
 }
