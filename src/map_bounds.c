@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:50:47 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/26 14:59:54 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/28 13:49:05 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_bounds	get_map_bounds(t_map *map)
 	t_bounds	map_bounds;
 
 	ft_bzero(&map_bounds, sizeof(t_bounds));
+	map_bounds.x_min = INT_MAX;
+	map_bounds.y_min = INT_MAX;
 	loop_map(&map_bounds, NULL, map, do_get_map_bounds);
 	return(map_bounds);
 }

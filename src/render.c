@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:43:00 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/26 18:48:24 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:46:55 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,18 @@ static void	paint_img(t_img *img, t_map map)
 		x = 0;
 		while (x < map.width)
 		{
-			bres.x0 = map.grid[y][x].x;
-			bres.y0 = map.grid[y][x].y;
+			bres.x0 = (int)map.grid[y][x].x;
+			bres.y0 =  (int)map.grid[y][x].y;
 			if (x < map.width - 1)
 			{
-				bres.x1 = map.grid[y][x + 1].x;
-				bres.y1 = map.grid[y][x + 1].y;
-				// plotLine(bres, img, get_x_color(map, x, y));
+				bres.x1 =  (int)map.grid[y][x + 1].x;
+				bres.y1 = (int) map.grid[y][x + 1].y;
 				plotLine(bres, img, map.grid[y][x].color, map.grid[y][x + 1].color);
 			}
 			if (y < map.height - 1)
 			{
-				bres.x1 = map.grid[y + 1][x].x;
-				bres.y1 = map.grid[y + 1][x].y;
-				// plotLine(bres, img, get_y_color(map, x, y));
+				bres.x1 =  (int)map.grid[y + 1][x].x;
+				bres.y1 =  (int)map.grid[y + 1][x].y;
 				plotLine(bres, img, map.grid[y][x].color, map.grid[y + 1][x].color);
 			}
 			x++;
@@ -89,15 +87,27 @@ static void	paint_img(t_img *img, t_map map)
 	}
 }
 
-// void ft_render(t_vars mlx_vars, t_map map)
-int	ft_render(void *data)
+static void	initialize_image(t_data *data) // remove this
 {
-	t_img	*img = ((t_data *)data)->img;
-	t_vars	*mlx_vars = ((t_data *)data)->mlx_vars;
-	t_map	*map = ((t_data *)data)->map;
+	t_img	*img;
 
+	img = data->img;
+	img->img = mlx_new_image(data->mlx_vars->mlx, WIDTH, HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+								&img->line_length, &img->endian);
+}
 
-	paint_img(img, *map);
+// void ft_render(t_vars mlx_vars, t_map map)
+int	ft_render(t_data *data)
+{
+	t_img	*img = data->img;
+	t_vars	*mlx_vars = data->mlx_vars;
+	t_map	map = *data->map;
+
+	mlx_destroy_image(mlx_vars->mlx, img->img);
+	initialize_image(data);
+
+	paint_img(img, ft_projection(map, 0.5236, 0.5236));
 	mlx_put_image_to_window(mlx_vars->mlx, mlx_vars->win, img->img, 0, 0);
 	return (0);
 }

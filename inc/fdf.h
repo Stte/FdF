@@ -5,6 +5,7 @@
 #include <mlx.h>
 #include "math.h"
 #include "libft.h"
+#include <limits.h>
 
 #include <stdio.h> // remove this
 
@@ -95,18 +96,17 @@ typedef struct	s_data
 	t_img	*img;
 }				t_data;
 
-// void		ft_render(t_vars mlx_vars, t_map map);
-int			ft_render(void *data);
+int			ft_render(t_data *data);
 int			close_cross(t_vars *param);
 int			key_hook(int keycode, t_data *data);
-// int			mouse_hook(int mousecode, t_data *data);
 void		load_map(char *path, t_map *map);
 void		get_map_size(int fd, t_map *map);
 int			ft_atoi_hex(const char *str);
-void		ft_projection(t_map *map, float x_rad, float y_rad);
+t_map		ft_projection(t_map map, float x_rad, float y_rad);
+// void		ft_projection(t_map *map, float x_rad, float y_rad);
 void		ft_transform(t_map *map, int transform_x, int transform_y);
 t_bounds	get_map_bounds(t_map *map);
-void		center_map(t_map *map);
+void		ft_center(t_map *map, t_bounds *old_bounds);
 void		ft_scale(t_map *map, float scale);
 void		fit_map(t_map *map);
 int			create_rgb(int r, int g, int b);
@@ -120,7 +120,6 @@ int			get_distance_delta(int delta_x, int delta_y);
 float		ft_lerp(float a, float b, float fraction);
 int			get_gradient(t_bres bres, int start_color, int end_color);
 void		free_split(char **split);
-
-int	test_hook(int keycode, t_data *data);
+void		ft_zoom(t_data *data, float zoom_amount);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/26 18:48:48 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/28 19:41:17 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ static void	add_hooks(t_data *data)
 	t_vars	*mlx_vars;
 
 	mlx_vars = data->mlx_vars;
-	mlx_key_hook(mlx_vars->win, key_hook, data);
+	// mlx_key_hook(mlx_vars->win, key_hook, data);
 	// mlx_mouse_hook(mlx_vars->win, mouse_hook, data);
 	mlx_hook(mlx_vars->win, ON_DESTROY, 0, close_cross, mlx_vars);
-	mlx_hook(mlx_vars->win, ON_KEYDOWN, 0, test_hook, data);
+	mlx_hook(mlx_vars->win, ON_KEYDOWN, 0, key_hook, data);
 }
 
 static void initialize_map(t_map *map)
 {
 	fit_map(map);
-	ft_projection(map, 0.5236, 0.5236);
-	fit_map(map);
-	center_map(map);
+	// ft_projection(map, 0.5236, 0.5236);
+	// fit_map(map);
+	ft_center(map, NULL);
 }
 
 static void	initialize_image(t_data *data)
@@ -85,6 +85,7 @@ static void	initialize_image(t_data *data)
 	img->img = mlx_new_image(data->mlx_vars->mlx, WIDTH, HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 								&img->line_length, &img->endian);
+
 }
 
 static void	fdf(char *path)
@@ -102,17 +103,20 @@ static void	fdf(char *path)
 	load_map(path, &map);
 	initialize_map(&map);
 	initialize_image(&data);
-	mlx_loop_hook(mlx_vars.mlx, ft_render, &data);
+	ft_render(&data);
+	// mlx_loop_hook(mlx_vars.mlx, ft_render, &data);
 	mlx_loop(mlx_vars.mlx);
 	// ft_render(mlx_vars, map);
 	// debug_print_map(&map);
 }
+
 
 int	main(int argc, char *argv[])
 {
 	if (argc)
 		;
 	printf("%d\n", getpid());
+	// check that the file exists
 	fdf(argv[1]);
 	return (0);
 }

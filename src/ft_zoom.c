@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scale.c                                            :+:      :+:    :+:   */
+/*   ft_zoom.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 11:58:20 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/27 17:50:20 by tspoof           ###   ########.fr       */
+/*   Created: 2023/03/28 14:07:39 by tspoof            #+#    #+#             */
+/*   Updated: 2023/03/28 14:09:50 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_scale(t_map *map, float scale)
+void	ft_zoom(t_data *data, float zoom_amount)
 {
-	int	x;
-	int	y;
+	t_bounds	old_bounds;
 
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			map->grid[y][x].x = map->grid[y][x].x * scale;
-			map->grid[y][x].y = map->grid[y][x].y * scale;
-			map->grid[y][x].z = map->grid[y][x].z * (scale * 0.5); // adjust to map size
-			x++;
-		}
-		y++;
-	}
+	old_bounds = get_map_bounds(data->map);
+	ft_scale(data->map, zoom_amount);
+	ft_center(data->map, &old_bounds);
 }
