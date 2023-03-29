@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:43:00 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/28 19:46:55 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/29 14:53:04 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	plotLine(t_bres bres, t_img *img, int start_color, int end_color)
 	bres.err = bres.delta_x + bres.delta_y;
 	while (1)
 	{
-		// fdf_mlx_pixel_put(img, bres.x0, bres.y0, color);
 		fdf_mlx_pixel_put(img, bres.x0, bres.y0,
 				get_gradient(bres, start_color, end_color));
 		if (bres.x0 == bres.x1 && bres.y0 == bres.y1)
@@ -67,12 +66,12 @@ static void	paint_img(t_img *img, t_map map)
 		x = 0;
 		while (x < map.width)
 		{
-			bres.x0 = (int)map.grid[y][x].x;
-			bres.y0 =  (int)map.grid[y][x].y;
+			bres.x0 = map.grid[y][x].x;
+			bres.y0 =  map.grid[y][x].y;
 			if (x < map.width - 1)
 			{
-				bres.x1 =  (int)map.grid[y][x + 1].x;
-				bres.y1 = (int) map.grid[y][x + 1].y;
+				bres.x1 =  map.grid[y][x + 1].x;
+				bres.y1 =  map.grid[y][x + 1].y;
 				plotLine(bres, img, map.grid[y][x].color, map.grid[y][x + 1].color);
 			}
 			if (y < map.height - 1)
@@ -102,12 +101,14 @@ int	ft_render(t_data *data)
 {
 	t_img	*img = data->img;
 	t_vars	*mlx_vars = data->mlx_vars;
-	t_map	map = *data->map;
 
 	mlx_destroy_image(mlx_vars->mlx, img->img);
 	initialize_image(data);
 
-	paint_img(img, ft_projection(map, 0.5236, 0.5236));
+	// ft_projection(map, data->proj);
+	paint_img(img, *data->map_proj);
+	// ft_projection(map, data->proj);
+	// paint_img(img, map);
 	mlx_put_image_to_window(mlx_vars->mlx, mlx_vars->win, img->img, 0, 0);
 	return (0);
 }

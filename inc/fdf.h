@@ -52,7 +52,7 @@ typedef struct s_point
 	float	x;
 	float	y;
 	float	z;
-	int	color;
+	int		color;
 }				t_point;
 
 typedef struct s_map
@@ -89,12 +89,21 @@ typedef struct	s_xy
 	int	y;
 }				t_xy;
 
+typedef struct	s_proj
+{
+	float	x_rad;
+	float	y_rad;
+}				t_proj;
+
 typedef struct	s_data
 {
 	t_vars	*mlx_vars;
 	t_map	*map;
+	t_map	*map_proj;
 	t_img	*img;
+	t_proj	proj;
 }				t_data;
+
 
 int			ft_render(t_data *data);
 int			close_cross(t_vars *param);
@@ -102,7 +111,8 @@ int			key_hook(int keycode, t_data *data);
 void		load_map(char *path, t_map *map);
 void		get_map_size(int fd, t_map *map);
 int			ft_atoi_hex(const char *str);
-t_map		ft_projection(t_map map, float x_rad, float y_rad);
+void		ft_projection(t_map *map, t_map *map_proj, t_proj proj);
+// t_map		ft_projection(t_map map, float x_rad, float y_rad);
 // void		ft_projection(t_map *map, float x_rad, float y_rad);
 void		ft_transform(t_map *map, int transform_x, int transform_y);
 t_bounds	get_map_bounds(t_map *map);
@@ -120,6 +130,9 @@ int			get_distance_delta(int delta_x, int delta_y);
 float		ft_lerp(float a, float b, float fraction);
 int			get_gradient(t_bres bres, int start_color, int end_color);
 void		free_split(char **split);
-void		ft_zoom(t_data *data, float zoom_amount);
+// void		ft_zoom(t_data *data, float zoom_amount);
+void		ft_zoom(t_map *map, float zoom_amount);
+
+void	debug_print_map(t_map *map); // remove this function
 
 #endif

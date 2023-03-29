@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:25:31 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/28 14:29:31 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/29 16:53:19 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	key_hook(int keycode, t_data *data)
 		exit (0);
 	}
 	if (keycode == LEFT)
-		ft_transform(data->map, -30, 0);
+		ft_transform(data->map_proj, -30, 0);
 	if (keycode == RIGHT)
-		ft_transform(data->map, 30, 0);
+		ft_transform(data->map_proj, 30, 0);
 	if (keycode == UP)
-		ft_transform(data->map, 0, -30);
+		ft_transform(data->map_proj, 0, -30);
 	if (keycode == DOWN)
-		ft_transform(data->map, 0, 30);
+		ft_transform(data->map_proj, 0, 30);
 	if (keycode == ZOOM_IN)
-		ft_zoom(data, 1.05);
+		ft_zoom(data->map_proj, 1.05);
 	if (keycode == ZOOM_OUT)
-		ft_zoom(data, 0.95);
+		ft_zoom(data->map_proj, 0.95);
 	ft_render(data);
 	return (0);
 }
