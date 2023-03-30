@@ -26,10 +26,15 @@ enum
 	LEFT = 0,
 	UP = 13,
 	DOWN = 1,
-	ROTATE_RIGHT = 14,
-	ROTATE_LEFT = 12,
+	ROTATE_Q = 14,
+	ROTATE_E = 12,
+	ROTATE_LEFT = 14,
+	ROTATE_RIGHT = 12,
+	ROTATE_UP = 14,
+	ROTATE_DOWN = 12,
 	ZOOM_IN = 69,
-	ZOOM_OUT = 78
+	ZOOM_OUT = 78,
+	TOGGLE_PROJ = 35
 };
 
 typedef struct	s_img
@@ -89,11 +94,11 @@ typedef struct	s_xy
 	int	y;
 }				t_xy;
 
-typedef struct	s_proj
+typedef struct	s_rads
 {
 	float	x_rad;
 	float	y_rad;
-}				t_proj;
+}				t_rads;
 
 typedef struct	s_data
 {
@@ -101,7 +106,8 @@ typedef struct	s_data
 	t_map	*map;
 	t_map	*map_proj;
 	t_img	*img;
-	t_proj	proj;
+	t_rads	rads;
+	int		iso;
 }				t_data;
 
 
@@ -111,9 +117,7 @@ int			key_hook(int keycode, t_data *data);
 void		load_map(char *path, t_map *map);
 void		get_map_size(int fd, t_map *map);
 int			ft_atoi_hex(const char *str);
-void		ft_projection(t_map *map, t_map *map_proj, t_proj proj);
-// t_map		ft_projection(t_map map, float x_rad, float y_rad);
-// void		ft_projection(t_map *map, float x_rad, float y_rad);
+void		ft_projection(t_map *map, t_map *map_proj, t_rads rads);
 void		ft_transform(t_map *map, int transform_x, int transform_y);
 t_bounds	get_map_bounds(t_map *map);
 void		ft_center(t_map *map, t_bounds *old_bounds);
@@ -130,8 +134,8 @@ int			get_distance_delta(int delta_x, int delta_y);
 float		ft_lerp(float a, float b, float fraction);
 int			get_gradient(t_bres bres, int start_color, int end_color);
 void		free_split(char **split);
-// void		ft_zoom(t_data *data, float zoom_amount);
 void		ft_zoom(t_map *map, float zoom_amount);
+void		ft_rotate_x(t_data *data, float rad);
 
 void	debug_print_map(t_map *map); // remove this function
 

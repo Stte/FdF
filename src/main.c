@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/29 17:21:06 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:38:24 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,9 @@ static void	fdf(char *path)
 	data.mlx_vars = &mlx_vars;
 	data.map = &map;
 	data.img = &img;
-	data.proj.x_rad = 0.5236;
-	data.proj.y_rad = 0.5236;
+	data.rads.x_rad = 0.5236;
+	data.rads.y_rad = 0.5236;
+	data.iso = -1;
 	data.map_proj = &map_proj;
 	create_window(&mlx_vars);
 	add_hooks(&data);
@@ -119,6 +120,7 @@ static void	fdf(char *path)
 	copy_map(&map_proj, &map);
 	initialize_image(&data);
 	ft_render(&data);
+	// mlx_loop_hook(mlx_vars.mlx, ft_render, &data);
 	mlx_loop(mlx_vars.mlx);
 }
 

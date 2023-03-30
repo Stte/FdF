@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:43:00 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/29 14:53:04 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:33:17 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,18 @@ static void	initialize_image(t_data *data) // remove this
 								&img->line_length, &img->endian);
 }
 
+static void	copy_grid(t_map *dst, t_map *src)
+{
+	int	y;
+
+	y = 0;
+	while (y < dst->height)
+	{
+		ft_memcpy(dst->grid[y], src->grid[y], sizeof(t_point) * dst->width);
+		y++;
+	}
+}
+
 // void ft_render(t_vars mlx_vars, t_map map)
 int	ft_render(t_data *data)
 {
@@ -104,11 +116,11 @@ int	ft_render(t_data *data)
 
 	mlx_destroy_image(mlx_vars->mlx, img->img);
 	initialize_image(data);
-
-	// ft_projection(map, data->proj);
+	if (data->iso > 0)
+		ft_projection(data->map, data->map_proj, data->rads);
+	else
+		copy_grid(data->map_proj, data->map);
 	paint_img(img, *data->map_proj);
-	// ft_projection(map, data->proj);
-	// paint_img(img, map);
 	mlx_put_image_to_window(mlx_vars->mlx, mlx_vars->win, img->img, 0, 0);
 	return (0);
 }
