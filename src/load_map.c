@@ -6,12 +6,12 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:39:56 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/26 17:15:06 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/04 19:32:19 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <fcntl.h> // for open
+#include <fcntl.h>
 
 static void	row_add_values(char	**split_line, int width, t_point *row, int y)
 {
@@ -22,7 +22,7 @@ static void	row_add_values(char	**split_line, int width, t_point *row, int y)
 	{
 		row[x].y = y;
 		row[x].x = x;
-		row[x].z = ft_atoi(split_line[x]);
+		row[x].z = ft_atoi(split_line[x]) / 2.0;
 		row[x].color = ft_atoi_hex(ft_strchr(split_line[x], 'x'));
 		if (row[x].color == 0)
 			row[x].color = 0xFFFFE0;

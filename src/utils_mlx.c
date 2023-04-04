@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_bounds.c                                       :+:      :+:    :+:   */
+/*   utils_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 19:50:47 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/04 19:33:58 by tspoof           ###   ########.fr       */
+/*   Created: 2023/04/04 19:27:14 by tspoof            #+#    #+#             */
+/*   Updated: 2023/04/04 20:17:46 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_bounds	get_map_bounds(t_map *map)
+void	initialize_image(t_data *data)
 {
-	t_bounds	map_bounds;
+	t_img	*img;
 
-	ft_bzero(&map_bounds, sizeof(t_bounds));
-	map_bounds.x_min = map->grid[0][0].x;
-	map_bounds.x_max = map->grid[map->height - 1][map->width - 1].x;
-	map_bounds.y_min = map->grid[0][0].y;
-	map_bounds.y_max = map->grid[map->height - 1][map->width - 1].y;
-	return (map_bounds);
+	img = data->img;
+	img->img = mlx_new_image(data->mlx_vars->mlx, WIDTH, HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+}
+
+void	create_window(t_vars *mlx_vars)
+{
+	mlx_vars->mlx = mlx_init();
+	mlx_vars->win = mlx_new_window(mlx_vars->mlx, WIDTH, HEIGHT, "FdF");
 }

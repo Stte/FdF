@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:39:24 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/30 20:41:23 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/04 19:45:57 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,37 +54,16 @@ static void	r_y(void *dst, void *params, t_map *map, t_xy xy)
 	map->grid[xy.y][xy.x].x = z * sin(rad) + x * cos(rad);
 }
 
-void	ft_rotate_x(t_data *data, float rad)
+void	ft_rotate(t_data *data, char axis, float rad)
 {
 	t_bounds	old_bounds;
 
 	old_bounds = get_map_bounds(data->map);
-	loop_map(NULL, &rad, data->map, r_x);
+	if (axis == 'x')
+		loop_map(NULL, &rad, data->map, r_x);
+	if (axis == 'y')
+		loop_map(NULL, &rad, data->map, r_y);
+	if (axis == 'z')
+		loop_map(NULL, &rad, data->map, r_z);
 	ft_center(data->map, &old_bounds);
 }
-
-void	ft_rotate_y(t_data *data, float rad)
-{
-	t_bounds	old_bounds;
-
-	old_bounds = get_map_bounds(data->map);
-	loop_map(NULL, &rad, data->map, r_y);
-	ft_center(data->map, &old_bounds);
-}
-
-void	ft_rotate_z(t_data *data, float rad)
-{
-	t_bounds	old_bounds;
-
-	old_bounds = get_map_bounds(data->map);
-	loop_map(NULL, &rad, data->map, r_z);
-	ft_center(data->map, &old_bounds);
-}
-// void	ft_rotate_y(t_data data)
-// {
-
-// }
-// void	ft_rotate_z(t_data data)
-// {
-
-// }

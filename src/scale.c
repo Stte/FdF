@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:58:20 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:07 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/04 18:12:23 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_scale(t_map *map, float scale)
 		{
 			map->grid[y][x].x = map->grid[y][x].x * scale;
 			map->grid[y][x].y = map->grid[y][x].y * scale;
-			map->grid[y][x].z = map->grid[y][x].z * scale; // adjust to map size
+			map->grid[y][x].z = map->grid[y][x].z * scale;
 			x++;
 		}
 		y++;
