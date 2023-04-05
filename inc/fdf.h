@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:30:59 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 13:46:35 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 16:00:56 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ enum
 	ROTATE_RIGHT = 37,
 	ROTATE_UP = 34,
 	ROTATE_DOWN = 40,
-	ZOOM_IN = 12,
-	ZOOM_OUT = 6,
+	ZOOM_IN = 24,
+	ZOOM_OUT = 27,
 	TOGGLE_PROJ = 35
 };
 

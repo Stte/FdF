@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:43:00 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 14:01:33 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 16:01:30 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_render(t_data *data)
 		"Transform: WASD");
 	mlx_string_put(mlx_vars->mlx, mlx_vars->win, 15, 30, 0xFFFFFF,
 		"Rotate: QE JL IK");
-	mlx_string_put(mlx_vars->mlx, mlx_vars->win, 15, 50, 0xFFFFFF, "Zoom: QZ");
+	mlx_string_put(mlx_vars->mlx, mlx_vars->win, 15, 50, 0xFFFFFF, "Zoom: -=");
 	mlx_string_put(mlx_vars->mlx, mlx_vars->win, 15, 70, 0xFFFFFF,
 		"Projection: P");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:25:31 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 13:53:00 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 16:00:07 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ static void	do_rotate(int keycode, t_data *data)
 		ft_rotate(data, 'y', 0.05);
 }
 
+#include <stdio.h>
+
 int	key_hook(int keycode, t_data *data)
 {
+	printf("%d\n", keycode);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(data->mlx_vars->mlx, data->mlx_vars->win);
