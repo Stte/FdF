@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:30:59 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 16:00:56 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 19:10:40 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 
-enum
+enum e_keys
 {
 	ON_KEYDOWN = 2,
 	ON_DESTROY = 17,

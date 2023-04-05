@@ -1,4 +1,4 @@
-NAME 		= FdF
+NAME 		= fdf
 
 S			= src/
 O			= obj/

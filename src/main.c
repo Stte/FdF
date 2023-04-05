@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 15:15:32 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 19:04:13 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ static void	copy_map(t_map *dest, t_map *src)
 	dest->height = src->height;
 	dest->width = src->width;
 	dest->grid = ft_calloc(dest->height, sizeof(t_point *));
+	if (!dest->grid)
+		exit (0);
 	y = 0;
 	while (y < dest->height)
 	{
 		dest->grid[y] = ft_calloc(dest->width, sizeof(t_point));
+		if (!dest->grid[y])
+			exit (0);
 		ft_memcpy(dest->grid[y], src->grid[y], sizeof(t_point) * dest->width);
 		y++;
 	}

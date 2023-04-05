@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:14:25 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 15:18:05 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 19:04:31 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	get_width(char *line)
 
 	split_line = ft_split(line, ' ');
 	if (!split_line)
-		return (0);
+		exit (0);
 	width = 0;
 	while (!ft_strchr(split_line[width], '\n'))
 		width++;
