@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:39:56 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/04 19:32:19 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 10:26:16 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,19 @@ static void	store_map(int fd, t_map *map)
 	}
 }
 
-void	load_map(char *path, t_map *map)
+int	load_map(char *path, t_map *map)
 {
 	int		fd;
 
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	get_map_size(fd, map);
 	close(fd);
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	store_map(fd, map);
 	close(fd);
+	return (1);
 }

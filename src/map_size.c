@@ -6,12 +6,11 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:14:25 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/04 19:34:44 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:18:05 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <fcntl.h>
 
 static int	get_width(char *line)
 {

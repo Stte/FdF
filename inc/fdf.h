@@ -6,20 +6,18 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:30:59 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/04 20:19:31 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 13:46:35 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <stdlib.h> // for exit
+# include <stdlib.h>
 # include <mlx.h>
 # include <math.h>
-# include "libft.h"
 # include <limits.h>
-
-# include <stdio.h> // remove this
+# include "libft.h"
 
 # define WIDTH 1000
 # define HEIGHT 1000
@@ -39,8 +37,8 @@ enum
 	ROTATE_RIGHT = 37,
 	ROTATE_UP = 34,
 	ROTATE_DOWN = 40,
-	ZOOM_IN = 69,
-	ZOOM_OUT = 78,
+	ZOOM_IN = 12,
+	ZOOM_OUT = 6,
 	TOGGLE_PROJ = 35
 };
 
@@ -120,7 +118,7 @@ typedef struct s_data
 int			ft_render(t_data *data);
 int			close_cross(t_vars *param);
 int			key_hook(int keycode, t_data *data);
-void		load_map(char *path, t_map *map);
+int			load_map(char *path, t_map *map);
 void		get_map_size(int fd, t_map *map);
 int			ft_atoi_hex(const char *str);
 void		ft_projection(t_map *map, t_map *map_proj, t_rads rads);

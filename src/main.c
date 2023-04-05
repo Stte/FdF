@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/04 20:18:09 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:15:32 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void	fdf(char *path)
 	data.map_proj = &map_proj;
 	create_window(&mlx_vars);
 	add_hooks(&data);
-	load_map(path, &map);
+	if (!load_map(path, &map))
+		return ;
 	initialize_map(&map);
 	copy_map(&map_proj, &map);
 	initialize_image(&data);
@@ -61,9 +62,17 @@ static void	fdf(char *path)
 
 int	main(int argc, char *argv[])
 {
-	if (argc)
-		;
-	// check that the file exists
+	char	*dot;
+	int		has_fdf;
+
+	if (argc != 2)
+		return (1);
+	dot = ft_strrchr(argv[1], '.');
+	if (!dot)
+		return (1);
+	has_fdf = ft_strncmp(dot, ".fdf", 4);
+	if (has_fdf)
+		return (1);
 	fdf(argv[1]);
 	return (0);
 }
