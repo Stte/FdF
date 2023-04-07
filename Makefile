@@ -6,8 +6,7 @@ I			= inc/
 LIBFT_I		= libft/inc
 
 CC			= cc
-CFLAGS		= -Wall -Werror -Wextra
-D		=
+CFLAGS		= -Wall -Werror -Wextra -O3
 INCLUDES	= -I$I -I$(LIBFT_I)
 LIBRARIES	= -L./libft -lft
 
@@ -27,7 +26,7 @@ RMDIR		= /bin/rm -rf
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
-LIBFT_FLAGS	= $D
+LIBFT_FLAGS	= $(CFLAGS)
 
 .PHONY: all clean fclean re
 
@@ -39,13 +38,13 @@ $O:
 $(OBJ): | $O
 
 $(OBJ): $O%.o: $S%
-	$(CC) $(CFLAGS) $(INCLUDES) $D -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -Imlx -c $< -o $@
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(OBJ) $(LIBRARIES) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIBFT):
-	make FLAGS=$(LIBFT_FLAGS) -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
 cleanobjdir: $O
 	$(RMDIR) $O
