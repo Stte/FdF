@@ -1,5 +1,8 @@
 # FdF
 
+
+https://user-images.githubusercontent.com/17783118/230579913-3a1560b3-b9c7-4d3f-b703-ce4163841145.mov
+
 ### **Goal**
 - Your program has to display the image in a window.
 - The management of your window must remain smooth (changing to another window, minimizing, and so forth).
@@ -23,10 +26,6 @@ $>cat 42.fdf
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 $>
 ```
-Each number represents a point in space:
-- The horizontal position corresponds to its axis.
-- The vertical position corresponds to its ordinate.
-- The value corresponds to its altitude.
 
 ### **Tools**
 - MiniLibX
