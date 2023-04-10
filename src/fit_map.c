@@ -6,12 +6,11 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 12:17:18 by tspoof            #+#    #+#             */
-/*   Updated: 2023/03/26 17:54:06 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/10 14:26:06 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <math.h>
 
 static int	get_len(int n_min, int n_max)
 {
