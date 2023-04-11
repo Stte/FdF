@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:45:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/04/05 19:04:13 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:24:36 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	fdf(char *path)
 	create_window(&mlx_vars);
 	add_hooks(&data);
 	if (!load_map(path, &map))
-		return ;
+		exit (0);
 	initialize_map(&map);
 	copy_map(&map_proj, &map);
 	initialize_image(&data);
